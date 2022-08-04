@@ -1,30 +1,17 @@
+
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+//https://www.w3schools.com/jsref/event_onchange.asp
+//https://www.w3schools.com/jsref/event_preventdefault.asp
+//https://stackoverflow.com/questions/21814294/what-happens-when-submit-button-is-clicked
 const url ='http://localhost:8000/api/student';
 
-
-
 // Get Data from database
-
 let output = '';
-const postList = document.querySelector('.post-list');
+const postList = document.getElementById('table_body');
 
 const renderPosts = (posts)=>{
     posts.forEach(get =>{
-        output +=`
-   <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">SNo</th>
-        <th scope="col">Student Name</th>
-        <th scope="col">DOB</th>
-        <th scope="col">Age</th>
-        <th scope="col">Student Id</th>
-        <th scope="col">Joining Date</th>
-        <th scope="col">Created At</th>
-        <th scope="col">Updated At</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
+        output +=`   
         <tr>
             <td></td>
             <td>${get.name}</td>
@@ -47,41 +34,34 @@ fetch(url + "/show")
  .then(data =>renderPosts(data))
 
 
-
  // Post Data to Database
  const addPostForm = document.querySelector('.add-post-form');
 
  // Retrieve the data from form
 
- const nameData   = document.getElementById("name").value;
- const dobData  = document.getElementById("dob").value;
- const ageData   = document.getElementById("age").value;
- const joiningdatedData  = document.getElementById("joiningdate").value;
- const studentidData  = document.getElementById("studentid").value;
+//  const nameData   = document.getElementById("name").value;
+//  const dobData  = document.getElementById("dob").value;
+//  const ageData   = document.getElementById("age").value;
+//  const joiningdatedData  = document.getElementById("joiningdate").value;
+//  const studentidData  = document.getElementById("studentid").value;
  
 
  addPostForm.addEventListener('submit',(e)=>{
 
     e.preventDefault();
 
+    const payload = new FormData(addPostForm) ;
+
     fetch(url + '/saving',{
         method: 'POST',
-        headers:{
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name : nameData,
-            dob  : dobData,
-            age  : ageData,
-            jd   : joiningdatedData,
-            studentId: studentidData
-        })
+        body : payload,
     })
     .then (res => res.json())
-    .then (data => {
+    .then (data => 
+        {
         const dataArr = [];
         dataArr.push(data);
         renderPosts(dataArr);
-    })
+     })
 
 })
