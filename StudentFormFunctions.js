@@ -32,8 +32,8 @@ const renderPosts = (posts)=>{
     postList.innerHTML = output;
 }
 // Get Data from database
-
-fetch("http://192.168.0.126:8080/api/rest" + "/get")
+ fetch("http://localhost:8000/api/student/show")
+//fetch("http://192.168.0.126:8080/api/rest" + "/get")
  .then(res => res.json())
  .then(data =>renderPosts(data))
 
@@ -42,12 +42,13 @@ fetch("http://192.168.0.126:8080/api/rest" + "/get")
  postList.addEventListener('click',(e) =>{
      e.preventDefault();
      let delPress = e.target.id == 'delete-post';
+     console.log(delPress);
      let viewPress = e.target.id == 'view-post';
      //delete method
 let id = e.target.parentElement.dataset.id;
 if(delPress){
-
-    fetch(`${url}/dlt/${id}`,{
+     fetch(`http://localhost:8000/api/student/delete"/${id}`,{
+   // fetch(`http://192.168.0.126:8080/api/rest/dlt/${id}`,{
         method: 'DELETE',
     })
     .then(res => res.json())
@@ -104,16 +105,7 @@ if(viewPress){
 //  })
 
 
- // Post Data to Database
-//  const addPostForm = document.querySelector('.add-post-form');
 
-//  // Retrieve the data from form
-
-// //  const nameData   = document.getElementById("name").value;
-// //  const dobData  = document.getElementById("dob").value;
-// //  const ageData   = document.getElementById("age").value;
-// //  const joiningdatedData  = document.getElementById("joiningdate").value;
-// //  const studentidData  = document.getElementById("studentid").value;
 
 
  //Post Data to Database
@@ -129,8 +121,8 @@ if(viewPress){
  const joiningdatedData  = document.getElementById("exampleInputJd").value;
  const studentidData  = document.getElementById("exampleInputStudId").value;
   
- 
-    fetch("http://192.168.0.126:8080/api/rest" + "/save",{
+ fetch("http://localhost:8000/api/student/saving",{
+   // fetch("http://192.168.0.126:8080/api/rest" + "/save",{
         method: 'POST',
         headers:{
             'Content-Type' : 'application/json'
@@ -180,4 +172,19 @@ function createClick() {
 function listClick() {
     document.getElementById("formfield").style.display = "none";
     document.getElementById("tablefield").style.display = "inline";
+}
+
+
+////----------All fields are filled or Not ----------////
+
+function isEmpty(){
+    let nameDataa   = document.getElementById("exampleInputName1").value;
+ let dobDataa  = document.getElementById("exampleInputDob").value;
+ let ageDataa   = document.getElementById("disabledNumberInput").value;
+ let joiningdatedDataa  = document.getElementById("exampleInputJd").value;
+ let studentidDataa  = document.getElementById("exampleInputStudId").value;
+
+    if(nameDataa !== "" && dobDataa !== "" &&  ageDataa !== "" && joiningdatedDataa !== "" ){
+        document.getElementById("btn").removeAttribute("disabled");
+    }
 }
