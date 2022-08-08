@@ -136,3 +136,16 @@ function listClick() {
     document.getElementById("formfield").style.display = "none";
     document.getElementById("tablefield").style.display = "inline";
 }
+////----------All fields are filled or Not ----------////
+
+function isEmpty(){
+    let nameDataa   = document.getElementById("exampleInputName1").value;
+ let dobDataa  = document.getElementById("exampleInputDob").value;
+ let ageDataa   = document.getElementById("disabledNumberInput").value;
+ let joiningdatedDataa  = document.getElementById("exampleInputJd").value;
+ let studentidDataa  = document.getElementById("exampleInputStudId").value;
+
+    if(nameDataa !== "" && dobDataa !== "" &&  ageDataa !== "" && joiningdatedDataa !== "" ){
+        document.getElementById("btn").removeAttribute("disabled");
+    }
+}

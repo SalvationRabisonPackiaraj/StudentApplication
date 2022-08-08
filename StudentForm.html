@@ -37,7 +37,7 @@
     
     <!----Student Form Creation-->
    <div class="container">
-    <div id="formfield" class="d-flex align-items-center justify-content-center">
+    <div id ="formfield" class="d-flex align-items-center justify-content-center">
      <form class="add-post-form col-md-5">
         <div class="mb-3">
           <label for="exampleInputName1" class="form-label">Name</label>
@@ -50,19 +50,19 @@
         <fieldset disabled >
            <div class="mb-3">
             <label for="disabledNumberInput" class="form-label">Age</label>
-            <input type="number" class="form-control" id="disabledNumberInput">
+            <input type="number" class="form-control" id="disabledNumberInput" >
            </div>
         </fieldset>
         <div class="mb-3">
             <label for="exampleInputJd" class="form-label">Joining Date</label>
-            <input type="date" class="form-control" id="exampleInputJd">
+            <input type="date" class="form-control" id="exampleInputJd" >
         </div>
         <div class="mb-3">
             <label for="exampleInputStudId" class="form-label">Student Id</label>
-            <input type="text" class="form-control" id="exampleInputStudId">
+            <input type="text" class="form-control" id="exampleInputStudId" onmouseover="isEmpty()">
         </div>
         
-        <button type="submit" class="btn btn-primary" >Submit</button>
+        <button type="submit" id="btn" disabled class="btn btn-primary"  >Submit</button>
       </form>
     </div>
     <br>
